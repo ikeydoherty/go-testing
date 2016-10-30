@@ -32,11 +32,14 @@ clean:
 	test ! -d $(PWD)/pkg || rm -rvf $(PWD)/pkg; \
 	test ! -d $(PWD)/builds || rm -rvf $(PWD)/builds
 
-# Ensure our own code is compliant..
-compliant:
-	pushd gtk3; \
+%.compliant:
+	pushd "$(subst .compliant,,$@)"; \
 	go fmt; \
 	GOPATH=$(PWD)/ golint; \
 	GOPATH=$(PWD)/ go vet;
+
+# Ensure our own code is compliant..
+compliant: gtk3.compliant
+
 
 .PHONY: all
