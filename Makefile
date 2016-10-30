@@ -47,7 +47,7 @@ clean:
 
 %.compliant:
 	@ ( \
-		pushd "$(subst .compliant,,$@)" || exit 1; \
+		pushd "$(subst .compliant,,$@)" >/dev/null || exit 1; \
 		go fmt || exit 1; \
 		GOPATH=$(PWD)/ golint || exit 1; \
 		GOPATH=$(PWD)/ go vet || exit 1; \
