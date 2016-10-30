@@ -19,7 +19,7 @@ workspace_deps:
 
 # "Normal" static binary
 %.statbin: workspace_deps
-	GOPATH=$(PWD) go build -pkgdir $(PWD)/pkg -o builds/$(subst .dynbin,,$@) $(PROJECT_NAME)/$(subst .dynbin,,$@)
+	GOPATH=$(PWD) go build -pkgdir $(PWD)/pkg -o builds/$(subst .statbin,,$@) $(PROJECT_NAME)/$(subst .statbin,,$@)
 
 all: gtk3 workspace_deps
 
