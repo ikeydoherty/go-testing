@@ -32,7 +32,7 @@ workspace_deps:
 
 # "Normal" static binary
 %.statbin: workspace_deps
-	GOPATH=$(PWD) go build -pkgdir $(PWD)/pkg -o builds/$(subst .statbin,,$@) $(PROJECT_ID)/$(subst .statbin,,$@)
+	GOPATH=$(PWD) go build -o builds/$(subst .statbin,,$@) $(PROJECT_ID)/$(subst .statbin,,$@)
 
 install: gtk3.dynbin
 	test -d $(DESTDIR)/usr/bin || install -D -d -m 00755 $(DESTDIR)/usr/bin; \
