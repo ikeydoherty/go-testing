@@ -7,7 +7,13 @@ workspace_deps:
 	test -d src || mkdir $(PWD)/src; \
 	test -e src/go-testing || ln -s $(PWD) src/.
 
-
 all: gtk3 workspace_deps
+
+# Ensure our own code is compliant..
+compliant:
+	pushd gtk3; \
+	go fmt; \
+	GOPATH=$(PWD)/ golint; \
+	GOPATH=$(PWD)/ go vet;
 
 .PHONY: all
