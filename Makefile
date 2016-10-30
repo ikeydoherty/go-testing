@@ -21,7 +21,11 @@ workspace_deps:
 %.statbin: workspace_deps
 	GOPATH=$(PWD) go build -pkgdir $(PWD)/pkg -o builds/$(subst .statbin,,$@) $(PROJECT_NAME)/$(subst .statbin,,$@)
 
-all: gtk3 workspace_deps
+install: gtk3.dynbin
+	test -d $(DESTDIR)/usr/bin || install -D -d -m 00755 $(DESTDIR)/usr/bin; \
+	install -m 00755 builds/* $(DESTDIR)/usr/bin/.
+
+all: gtk3.dynbin workspace_deps
 
 # Ensure our own code is compliant..
 compliant:
