@@ -37,13 +37,15 @@ clean:
 	test ! -d $(PWD)/builds || rm -rvf $(PWD)/builds
 
 %.compliant:
-	pushd "$(subst .compliant,,$@)"; \
-	go fmt; \
-	GOPATH=$(PWD)/ golint; \
-	GOPATH=$(PWD)/ go vet;
+	@ ( \
+		pushd "$(subst .compliant,,$@)" || exit 1; \
+		go fmt || exit 1; \
+		GOPATH=$(PWD)/ golint || exit 1; \
+		GOPATH=$(PWD)/ go vet || exit 1; \
+	);
 
 # Ensure our own code is compliant..
-compliant: gtk3.compliant
+compliant: gtk3.compliant libtest.compliant
 
 
 .PHONY: all
