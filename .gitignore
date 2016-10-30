@@ -2,4 +2,4 @@
 /src/go-testing
 
 # Built binaries
-src/go-testing
+/builds/*
