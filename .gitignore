@@ -1,5 +1,5 @@
 # Symlinked workspace
-/src/go-testing
+/src/github.com/ikeydoherty
 
 # Built binaries
 /builds/*
