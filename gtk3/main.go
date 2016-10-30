@@ -29,4 +29,25 @@ import (
 
 func main() {
 	gtk.Init(nil)
+
+	win, _ := gtk.WindowNew(gtk.WINDOW_TOPLEVEL)
+	win.SetTitle("I is a windeh")
+	win.SetIconName("help-about-symbolic")
+
+	win.Connect("destroy", func() {
+		gtk.MainQuit()
+	})
+
+	button, _ := gtk.ButtonNewWithLabel("Click meh")
+	button.Connect("clicked", func() {
+		button.SetLabel("Clicked!")
+	})
+
+	win.Add(button)
+	button.SetHAlign(gtk.ALIGN_CENTER)
+	button.SetVAlign(gtk.ALIGN_CENTER)
+	win.SetSizeRequest(400, 400)
+	win.ShowAll()
+
+	gtk.Main()
 }
