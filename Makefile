@@ -19,8 +19,10 @@ testconsumer.statbin:
 
 # Ensure the workspace is setup
 workspace_deps:
-	test -d $(PROJECT_ROOT) || mkdir -p $(PWD)/$(PROJECT_ROOT); \
-	test -e $(PROJECT_ROOT)/$(PROJECT_NAME) || ln -s $(PWD) $(PROJECT_ROOT)/.
+	@ ( \
+		test -d $(PROJECT_ROOT) || mkdir -p $(PWD)/$(PROJECT_ROOT); \
+		test -e $(PROJECT_ROOT)/$(PROJECT_NAME) || ln -s $(PWD) $(PROJECT_ROOT)/. ; \
+	);
 
 # Defines a github target used in our vendoring
 %.github: workspace_deps
