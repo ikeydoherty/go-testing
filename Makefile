@@ -1,13 +1,17 @@
-# Change for your particular project
+# Change for your particular project, this is the _root_ level name.
 PROJECT_NAME := go-testing
+
+# Root of your project. For simple libraries/binaries this should just be
+# src. For reusable libraries and such this should likely be src/github.com
+PROJECT_ROOT := src
 
 # Main target is to build gtk3 itself
 gtk3.dynbin: gotk3/gotk3/gtk.github
 
 # Ensure the workspace is setup
 workspace_deps:
-	test -d src || mkdir $(PWD)/src; \
-	test -e src/$(PROJECT_NAME) || ln -s $(PWD) src/.
+	test -d $(PROJECT_ROOT) || mkdir -p $(PWD)/$(PROJECT_ROOT); \
+	test -e $(PROJECT_ROOT)/$(PROJECT_NAME) || ln -s $(PWD) $(PROJECT_ROOT)/.
 
 # Defines a github target used in our vendoring
 %.github: workspace_deps
