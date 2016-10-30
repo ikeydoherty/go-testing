@@ -9,6 +9,8 @@ PROJECT_ID := $(PROJECT_PREFIX)/$(PROJECT_NAME)
 # src. For reusable libraries and such this should likely be src/$(PROJECT_ID)
 PROJECT_ROOT := src/$(PROJECT_PREFIX)
 
+.DEFAULT_GOAL := all
+
 # Main target is to build gtk3 itself
 gtk3.dynbin: gotk3/gotk3/gtk.github
 
@@ -36,8 +38,6 @@ install: gtk3.dynbin
 	test -d $(DESTDIR)/usr/bin || install -D -d -m 00755 $(DESTDIR)/usr/bin; \
 	install -m 00755 builds/* $(DESTDIR)/usr/bin/.
 
-all: gtk3.dynbin workspace_deps
-
 clean:
 	test ! -e $(PROJECT_ROOT) || rm -rvf $(PROJECT_ROOT); \
 	test ! -d $(PWD)/pkg || rm -rvf $(PWD)/pkg; \
@@ -54,5 +54,4 @@ clean:
 # Ensure our own code is compliant..
 compliant: gtk3.compliant libtest.compliant testconsumer.compliant
 
-
-.PHONY: all
+all: gtk3.dynbin testconsumer.statbin
