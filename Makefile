@@ -27,6 +27,11 @@ install: gtk3.dynbin
 
 all: gtk3.dynbin workspace_deps
 
+clean:
+	test ! -e src/$(PROJECT_NAME) || rm -rvf src/$(PROJECT_NAME); \
+	test ! -d $(PWD)/pkg || rm -rvf $(PWD)/pkg; \
+	test ! -d $(PWD)/builds || rm -rvf $(PWD)/builds
+
 # Ensure our own code is compliant..
 compliant:
 	pushd gtk3; \
