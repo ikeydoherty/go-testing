@@ -17,6 +17,10 @@ workspace_deps:
 %.dynbin: workspace_deps
 	GOPATH=$(PWD) go build -linkshared -pkgdir $(PWD)/pkg -o builds/$(subst .dynbin,,$@) $(PROJECT_NAME)/$(subst .dynbin,,$@) 
 
+# "Normal" static binary
+%.statbin: workspace_deps
+	GOPATH=$(PWD) go build -pkgdir $(PWD)/pkg -o builds/$(subst .dynbin,,$@) $(PROJECT_NAME)/$(subst .dynbin,,$@)
+
 all: gtk3 workspace_deps
 
 # Ensure our own code is compliant..
