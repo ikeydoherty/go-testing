@@ -1,6 +1,5 @@
 # Main target is to build gtk3 itself
-gtk3: gotk3/gotk3/gtk.github
-	GOPATH=$(PWD) go build -linkshared -pkgdir $(PWD)/pkg -o builds/gtk3 go-testing/gtk3 
+gtk3.dynbin: gotk3/gotk3/gtk.github
 
 # Ensure the workspace is setup
 workspace_deps:
@@ -10,6 +9,10 @@ workspace_deps:
 # Defines a github target used in our vendoring
 %.github: workspace_deps
 	GOPATH=$(PWD) go build -pkgdir $(PWD)/pkg -buildmode=shared -i "github.com/$(subst .github,,$@)"
+
+# Dynamic golang binary
+%.dynbin: workspace_deps
+	GOPATH=$(PWD) go build -linkshared -pkgdir $(PWD)/pkg -o builds/$(subst .dynbin,,$@) go-testing/$(subst .dynbin,,$@) 
 
 all: gtk3 workspace_deps
 
