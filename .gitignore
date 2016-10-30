@@ -3,3 +3,6 @@
 
 # Built binaries
 /builds/*
+
+# Build artifacts because of our -pkgdir usage
+/pkg/
