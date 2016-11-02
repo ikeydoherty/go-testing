@@ -1,5 +1,4 @@
-# Symlinked workspace
-/src/github.com/ikeydoherty
+/src/github.com/gotk3
 
 # Built binaries
 /builds/*
